@@ -5,7 +5,7 @@ module.exports = class TokenStream {
     constructor(stream) {
         this.inputStream = stream;
         this.current = null;
-        this.keywords = " if then else lambda true false ";
+        this.keywords = " if then else lambda true false while ";
     }
 
     is_whitespace(ch) {

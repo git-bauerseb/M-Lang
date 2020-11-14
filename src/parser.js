@@ -105,6 +105,22 @@ module.exports = class Parser {
         }
     }
 
+    parse_while() {
+        this.skip_kw('while');
+
+        this.skip_punc('(');
+        let cond = this.parse_expression();
+        this.skip_punc(')');
+
+        let body = this.parse_expression();
+
+        return {
+            type: 'while',
+            cond: cond,
+            body: body
+        };
+    }
+
     parse_if() {
         this.skip_kw('if');
 
@@ -137,6 +153,7 @@ module.exports = class Parser {
 
             if (this.is_punc('{')) return this.parse_prog();
             if (this.is_keyword('if')) return this.parse_if();
+            if (this.is_keyword('while')) return this.parse_while();
             if (this.is_keyword('true') || this.is_keyword('false')) {
                 return this.parse_bool();
             }
@@ -154,6 +171,13 @@ module.exports = class Parser {
 
             this.unexpected();
         });
+    }
+
+    parse_bool() {
+        return {
+            type: 'bool',
+            value: this.tokenStream.next().value == 'true'
+        };
     }
 
     delimited(start, stop, separator, parser) {

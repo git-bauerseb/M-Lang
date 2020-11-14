@@ -108,6 +108,13 @@ function evaluate(exp, env) {
             return apply_op(exp.operator, evaluate(exp.left, env),
                 evaluate(exp.right, env));
 
+        case 'while':
+            var ret = false;
+            while (evaluate(exp.cond, env)) {
+                ret = evaluate(exp.body, env);
+            }
+            return ret;
+
         case 'if':
             let cond = evaluate(exp.cond, env);
             if (cond) {
@@ -180,7 +187,7 @@ globalEnv.def('write', function(path, str) {
 });
 
 function main() {
-    test(process.argv[2]);
+    test('../examples/while.f');
 }
 
 main();
