@@ -187,7 +187,7 @@ globalEnv.def('write', function(path, str) {
 });
 
 function main() {
-    test('../examples/while.f');
+    test(process.argv[2]);
 }
 
 main();

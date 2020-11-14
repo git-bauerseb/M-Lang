@@ -16,5 +16,5 @@ The folder ``examples`` contains simple example programs to test specific langua
 
 - Variables
 - Branching (if/then/else)
-- Loops (for/while) **not yet implemented**
+- Loops (for/while) **for loop not yet implemented**
 - Environment interaction (file reading/file writing)
