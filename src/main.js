@@ -180,7 +180,7 @@ globalEnv.def('write', function(path, str) {
 });
 
 function main() {
-    test('./examples/fibonacci.f');
+    test(process.argv[2]);
 }
 
 main();
